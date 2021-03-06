@@ -14,15 +14,18 @@ import java.io.File;
 
 public class Main extends Application {
 
+    private File trainDirectory;
+    private File testDirectory;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         //Get test and training directories from user
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setInitialDirectory(new File("."));
         directoryChooser.setTitle("Choose the training folder.");
-        File trainDirectory = directoryChooser.showDialog(primaryStage);
+        trainDirectory = directoryChooser.showDialog(primaryStage);
         directoryChooser.setTitle("Choose the testing folder.");
-        File testDirectory = directoryChooser.showDialog(primaryStage);
+        testDirectory = directoryChooser.showDialog(primaryStage);
 
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Assignment 2");
@@ -30,8 +33,15 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    public File getTrainDirectory() {
+        return trainDirectory;
+    }
 
-    public static void main(String[] args) {
+    public File getTestDirectory() {
+        return testDirectory;
+    }
+
+    public static void main( String[] args) {
         launch(args);
     }
 }
