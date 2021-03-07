@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.File;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class SpamDetector {
@@ -39,22 +40,56 @@ public class SpamDetector {
 		File[] trainingHamFiles = trainHamDirectory.listFiles();
 		File[] trainingSpamFiles = trainSpamDirectory.listFiles();
 
-		//Loop through each file
+		trainHamFreq = new TreeMap<>();
+		trainSpamFreq = new TreeMap<>();
+
+		//Loop through each ham file
 		for(File currentFile : trainingHamFiles){
-			if(!currentFile.isFile()){
+			try{
+				TreeMap<String,Integer> wordsFrequency = FileHelpers.getWordFreqCount( currentFile );
+				Set<String> words = wordsFrequency.keySet();
+
+				//For every word that appears in the file
+				for(String word : words){
+					if(trainHamFreq.containsKey( word )){
+
+						trainHamFreq.put(word, trainHamFreq.get(word) + 1);	// Increment word frequency by 1
+					}else{
+						trainHamFreq.put(word, 1);							// Initialize word frequency to 1
+					}
+				}
+				trainHamFileCount++;
+
+			}catch(Exception e){
+				System.out.println("ERROR: Missing file " + currentFile.getPath());
 				break;
 			}
-			//TODO: get word count
-			trainHamFileCount++;
 		}
 
+		//Loop through each spam file
 		for(File currentFile : trainingSpamFiles){
-			if(!currentFile.isFile()){
+			try{
+				TreeMap<String,Integer> wordsFrequency = FileHelpers.getWordFreqCount( currentFile );
+				Set<String> words = wordsFrequency.keySet();
+
+				//For every word that appears in the file
+				for(String word : words){
+					if(trainSpamFreq.containsKey( word )){
+
+						trainSpamFreq.put(word, trainSpamFreq.get(word) + 1);	// Increment word frequency by 1
+					}else{
+						trainSpamFreq.put(word, 1);							// Initialize word frequency to 1
+					}
+				}
+				trainSpamFileCount++;
+
+			}catch(Exception e){
+				System.out.println("ERROR: Missing file " + currentFile.getPath());
 				break;
 			}
-			//TODO: get word count
-			trainSpamFileCount++;
 		}
+
+		
 
 		trained = true;
 	}
