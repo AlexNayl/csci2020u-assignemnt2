@@ -9,7 +9,7 @@
 <VBox fx:controller="assignment2.Controller"
       xmlns:fx="http://javafx.com/fxml">
 
-    <TableView>
+    <TableView fx:id="mainTableView">
         <columns>
             <TableColumn text = "File" prefWidth="250">
                 <cellValueFactory>

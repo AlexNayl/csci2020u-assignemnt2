@@ -14,8 +14,8 @@ import java.io.File;
 
 public class Main extends Application {
 
-    private File trainDirectory;
-    private File testDirectory;
+    private static File trainDirectory;
+    private static File testDirectory;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -33,11 +33,11 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public File getTrainDirectory() {
+    public static File getTrainDirectory() {
         return trainDirectory;
     }
 
-    public File getTestDirectory() {
+    public static File getTestDirectory() {
         return testDirectory;
     }
 

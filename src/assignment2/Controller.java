@@ -14,7 +14,9 @@ public class Controller {
 	@FXML public Label precisionLabel;
 
 	public void initialize() {
+		SpamDetector spamDetector = new SpamDetector();
 
+		spamDetector.train(Main.getTrainDirectory());
 	}
 
 }
