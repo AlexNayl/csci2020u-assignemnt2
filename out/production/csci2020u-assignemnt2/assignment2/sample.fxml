@@ -35,6 +35,4 @@
         <Label text="Precision:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
         <Label text="PRECISION OUT" fx:id="precisionLabel" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
     </GridPane>
-
-
 </VBox>

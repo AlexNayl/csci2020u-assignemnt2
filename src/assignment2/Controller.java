@@ -21,6 +21,33 @@ public class Controller {
 		ObservableList<TestFile> results = spamDetector.test(Main.getTestDirectory());
 
 		mainTableView.getItems().addAll(results);
+
+		//Accuracy calculation
+		int numGuesses = results.size();
+		int numTruePositives = 0;
+		int numFalsePositives = 0;
+		int numTrueNegatives = 0;
+
+		for(TestFile testFile : results){
+			if (testFile.getSpamProbability() > 0.5){
+				if(testFile.getActualClass().equals( "spam" )){
+					numTruePositives++;
+				}else{
+					numFalsePositives++;
+				}
+			}else{
+				if(testFile.getActualClass().equals( "ham" )){
+					numTrueNegatives++;
+				}
+			}
+		}
+
+		double accuracy = (double)(numTruePositives + numTrueNegatives) / (double)numGuesses;
+		double precision = (double)numTruePositives / (double)(numFalsePositives + numTrueNegatives);
+
+		accuracyLabel.setText(Double.toString( accuracy ));
+		precisionLabel.setText(Double.toString( precision ));
+
 	}
 
 }
