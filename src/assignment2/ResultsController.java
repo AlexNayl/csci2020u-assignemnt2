@@ -9,7 +9,7 @@ import javafx.stage.DirectoryChooser;
 import java.io.File;
 
 
-public class Controller {
+public class ResultsController {
 	@FXML public TableView mainTableView;
 	@FXML public Label accuracyLabel;
 	@FXML public Label precisionLabel;
