@@ -40,4 +40,8 @@ public class TestFile {
     public void setSpamProbability(double spamProbability) {
         this.spamProbability = spamProbability;
     }
+
+    public String toString(){
+        return "{" + filename + ", " + spamProbability + ", " + actualClass + "}";
+    }
 }

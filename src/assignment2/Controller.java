@@ -1,5 +1,6 @@
 package assignment2;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
@@ -17,6 +18,9 @@ public class Controller {
 		SpamDetector spamDetector = new SpamDetector();
 
 		spamDetector.train(Main.getTrainDirectory());
+		ObservableList<TestFile> results = spamDetector.test(Main.getTestDirectory());
+
+		mainTableView.getItems().addAll(results);
 	}
 
 }

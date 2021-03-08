@@ -13,17 +13,14 @@ public class SpamDetector {
 	private static final String RELATIVE_SPAM_PATH = "\\spam";
 
 	private TreeMap<String, Double> spamProbabilityMap;
-
-	private int trainHamFileCount = 0;
-	private int trainSpamFileCount = 0;
 	private boolean trained = false;
 
 	/**
 	 * Trains the spam detector by creating a probability map of words and their probability of being spam
 	 * @param trainingDirectory Location of training data (subfolders containing spam and ham data)
 	 */
-	public void train(File trainingDirectory)
-	{
+	public void train(File trainingDirectory) {
+		//----Frequency Map Generation----
 		//Testing and prepping training files
 		if(!trainingDirectory.exists())
 		{
@@ -42,6 +39,8 @@ public class SpamDetector {
 
 		TreeMap<String, Integer> trainHamFreqMap = new TreeMap<>();
 		TreeMap<String, Integer> trainSpamFreqMap = new TreeMap<>();
+		int trainHamFileCount = 0;
+		int trainSpamFileCount = 0;
 
 		//Loop through each ham file
 		for(File currentFile : trainingHamFiles){
@@ -89,7 +88,7 @@ public class SpamDetector {
 			}
 		}
 
-		//--Caclulate the probability map--
+		//----Proabaility map calculation----
 		TreeMap<String, Double> spamContainsWordProbabilityMap = new TreeMap<>();	//Probability a spam file contains each word
 		TreeMap<String, Double> hamContainsWordProbabilityMap = new TreeMap<>();	//Probability a ham file contains each word
 		Set<String> spamWords = trainSpamFreqMap.keySet();
@@ -118,7 +117,7 @@ public class SpamDetector {
 			if( hamContainsWordProbabilityMap.containsKey( word ) ){
 				hamContainsWordProbability = hamContainsWordProbabilityMap.get( word );
 			}
-			
+
 			Double spamProbability = spamContainsWordProbability / (spamContainsWordProbability + hamContainsWordProbability);
 			spamProbabilityMap.put(word, spamProbability);
 		}
@@ -134,11 +133,81 @@ public class SpamDetector {
 	 */
 	public ObservableList<TestFile> test(File testDirectory)
 	{
+		//----state checking and file prep----
 		if( !trained ) {
 			System.out.println("ERROR: Cannot call test() on untrained SpamDetector object.");
 			return null;
 		}
+
+		if(!testDirectory.exists())
+		{
+			System.out.println("ERROR: Invalid test data directory.");
+			return null;
+		}
+		String absoluteMainPath = testDirectory.getAbsolutePath();
+		File hamDirectory = new File(absoluteMainPath + RELATIVE_HAM_PATH);
+		File spamDirectory = new File(absoluteMainPath + RELATIVE_SPAM_PATH);
+		if(!hamDirectory.exists() || !spamDirectory.exists()){
+			System.out.println("ERROR: Invalid test data format.");
+			return null;
+		}
+
+		File[] hamFiles = hamDirectory.listFiles();
+		File[] spamFiles = spamDirectory.listFiles();
 		ObservableList<TestFile> results = FXCollections.observableArrayList();
+
+		//----File spam detection----
+		//Loop though ham files
+		for(File currentFile : hamFiles){
+			try{
+				TreeMap<String, Integer> wordsFrequency = FileHelpers.getWordFreqCount( currentFile );
+				Set<String> words = wordsFrequency.keySet();
+				//Implimentation of 'n' formula in assignment 1 pdf
+				double n = 0;
+				for(String word : words){
+					if(spamProbabilityMap.containsKey( word )) {
+						double wordProbability = spamProbabilityMap.get( word );
+						if(wordProbability != 0) {		//Zeroes break this
+							n += Math.log( 1 - wordProbability ) - Math.log( wordProbability );
+						}
+					}
+				}
+				//Implimentation of Pr formula in assignment 1 pdf
+				double finalProbability = 1 / (1 + Math.pow(Math.E , n));
+				TestFile testFile = new TestFile( currentFile.getName(), finalProbability, "ham");
+				results.add(testFile);
+
+			}catch(Exception e){
+				System.out.println("ERROR: File does not exists" + currentFile.getPath());
+			}
+
+		}
+		//Loop through spam files
+		for(File currentFile : spamFiles){
+			try{
+				TreeMap<String, Integer> wordsFrequency = FileHelpers.getWordFreqCount( currentFile );
+				Set<String> words = wordsFrequency.keySet();
+				//Implimentation of 'n' formula in assignment 1 pdf
+				double n = 0;
+				for(String word : words){
+					if(spamProbabilityMap.containsKey( word )) {
+						double wordProbability = spamProbabilityMap.get( word );
+						if(wordProbability != 0) {		//Zeroes break this
+							n += Math.log( 1 - wordProbability ) - Math.log( wordProbability );
+						}
+					}
+				}
+				//Implimentation of Pr formula in assignment 1 pdf
+				double finalProbability = 1 / (1 + Math.pow(Math.E , n));
+				TestFile testFile = new TestFile( currentFile.getName(), finalProbability, "spam");
+				results.add(testFile);
+
+			}catch(Exception e){
+				System.out.println("ERROR: File does not exists" + currentFile.getPath());
+			}
+
+		}
+
 
 		return results;
 	}

@@ -23,7 +23,7 @@
             </TableColumn>
             <TableColumn text = "Spam Probability" prefWidth="250">
                 <cellValueFactory>
-                    <PropertyValueFactory property="spamProbability" />
+                    <PropertyValueFactory property="spamProbRounded" />
                 </cellValueFactory>
             </TableColumn>
         </columns>
