@@ -1,0 +1,12 @@
+assignment2/FileHelpers.java
+ assignment2.FileHelpers
+assignment2/TestFile.java
+ assignment2.TestFile
+assignment2/SpamDetector.java
+ assignment2.SpamDetector
+assignment2/Main.java
+ assignment2.Main
+assignment2/ResultsController.java
+ assignment2.ResultsController
+assignment2/FileChooserController.java
+ assignment2.FileChooserController

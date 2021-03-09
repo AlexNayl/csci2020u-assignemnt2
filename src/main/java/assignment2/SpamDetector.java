@@ -1,4 +1,4 @@
-package main.java.assignment2;
+package assignment2;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

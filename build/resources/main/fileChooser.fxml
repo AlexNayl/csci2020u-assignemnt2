@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="assignment2.FileChooserController"
+            prefHeight="400.0" prefWidth="600.0"
+            alignment="CENTER" vgap="10" hgap="10">
+    <Label text="Training Data Directory:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <Label text="Testing Data Directory:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+    <Label text="" fx:id="errorLabel" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="3" textFill="red"/>
+
+    <TextField text="" fx:id="trainingTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="300"/>
+    <TextField text="" fx:id="testingTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="300"/>
+
+    <Button text="Change" onAction="#handleTrainingButton" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+    <Button text="Change" onAction="#handleTestingButton" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+    <Button text="Next" onAction="#handleNextButton" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="3" GridPane.halignment="CENTER"/>
+
+
+</GridPane>

@@ -2,7 +2,7 @@
  * @author Alexander Naylor 100 696 151
  */
 
-package main.java.assignment2;
+package assignment2;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -23,10 +23,14 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.stage = primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource( "fileChooser.fxml" ));
-        primaryStage.setTitle("Assignment 2");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        try {
+            Parent root = FXMLLoader.load( getClass().getResource( "/fileChooser.fxml" ) );
+            primaryStage.setTitle("Assignment 2");
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**

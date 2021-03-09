@@ -1,4 +1,4 @@
-package main.java.assignment2;
+package assignment2;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -69,7 +69,7 @@ public class FileChooserController {
 			Main.setTrainDirectory( trainingDirectory );
 			Main.setTestDirectory( testingDirectory );
 			try {
-				Parent root = FXMLLoader.load( getClass().getResource( "results.fxml" ) );
+				Parent root = FXMLLoader.load( getClass().getResource( "/results.fxml" ) );
 				Main.setScene(root);
 			}catch(Exception exception){
 				exception.printStackTrace();
