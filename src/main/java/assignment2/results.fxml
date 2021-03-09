@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
-<VBox fx:controller="assignment2.ResultsController"
+<VBox fx:controller="main.java.assignment2.ResultsController"
       xmlns:fx="http://javafx.com/fxml">
 
     <TableView fx:id="mainTableView">

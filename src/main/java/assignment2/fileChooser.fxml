@@ -8,7 +8,7 @@
 
 <GridPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="assignment2.FileChooserController"
+            fx:controller="main.java.assignment2.FileChooserController"
             prefHeight="400.0" prefWidth="600.0"
             alignment="CENTER" vgap="10" hgap="10">
     <Label text="Training Data Directory:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>

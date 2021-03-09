@@ -2,13 +2,12 @@
  * @author Alexander Naylor 100 696 151
  */
 
-package assignment2;
+package main.java.assignment2;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 import java.io.File;

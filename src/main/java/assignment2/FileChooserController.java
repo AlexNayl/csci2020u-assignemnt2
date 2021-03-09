@@ -1,4 +1,4 @@
-package assignment2;
+package main.java.assignment2;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

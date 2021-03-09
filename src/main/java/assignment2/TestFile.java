@@ -1,4 +1,4 @@
-package assignment2;
+package main.java.assignment2;
 import java.text.DecimalFormat;
 
 public class TestFile {

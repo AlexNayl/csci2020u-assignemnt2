@@ -1,8 +1,7 @@
-package assignment2;
+package main.java.assignment2;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.TreeMap;
 

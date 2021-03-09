@@ -181,12 +181,12 @@
       <Port>5050</Port>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="assignment2.Main" />
+      <option name="MAIN_CLASS_NAME" value="main.java.assignment2.Main" />
       <module name="csci2020u-assignemnt2" />
       <option name="VM_PARAMETERS" value="--module-path ${PATH_TO_FX} --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="assignment2.*" />
+          <option name="PATTERN" value="main.java.assignment2.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>

@@ -1,12 +1,9 @@
-package assignment2;
+package main.java.assignment2;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
-import javafx.stage.DirectoryChooser;
-
-import java.io.File;
 
 
 public class ResultsController {
